@@ -42,13 +42,16 @@ export default function Home() {
     };
 
     fetchContent();
-    const interval = setInterval(fetchContent, 2000);
+    // Reduce refresh rate on mobile for better performance
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    const refreshInterval = isMobile ? 5000 : 2000;
+    const interval = setInterval(fetchContent, refreshInterval);
     return () => clearInterval(interval);
   }, []);
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === "love@123") {
+    if (password === "iloveyou") {
       setIsUnlocked(true);
       localStorage.setItem("lovev1_unlocked", "true");
       setError("");

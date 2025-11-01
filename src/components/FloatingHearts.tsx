@@ -29,8 +29,10 @@ export const FloatingHearts = () => {
     ];
 
     const windowWidth = typeof window !== "undefined" ? window.innerWidth : 1200;
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    const heartCount = isMobile ? 10 : 25; // Reduce hearts on mobile
 
-    const generatedHearts = Array.from({ length: 25 }, (_, i) => {
+    const generatedHearts = Array.from({ length: heartCount }, (_, i) => {
       const startX = Math.random() * windowWidth;
       return {
         id: i,

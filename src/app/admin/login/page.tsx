@@ -7,7 +7,7 @@ import { Heart, Eye, EyeOff, Mail, Lock } from "lucide-react";
 
 export default function AdminLogin() {
   const router = useRouter();
-  const [email, setEmail] = useState("admin@example.com");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -137,10 +137,6 @@ export default function AdminLogin() {
             </motion.button>
           </form>
 
-          {/* Footer Note */}
-          <p className="text-xs text-center text-gray-500 dark:text-gray-500 mt-6">
-            Demo: admin@example.com / admin123
-          </p>
         </div>
       </motion.div>
     </div>

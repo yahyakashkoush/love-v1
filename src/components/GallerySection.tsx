@@ -37,9 +37,12 @@ export const GallerySection = ({ images }: GallerySectionProps) => {
     return null;
   }
 
-  // Auto-flip every 5 seconds
+  // Auto-flip every 5 seconds (longer on mobile for performance)
   useEffect(() => {
     if (!autoPlay) return;
+    
+    const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+    const flipInterval = isMobile ? 7000 : 5000; // Longer interval on mobile
     
     const timer = setInterval(() => {
       setIsFlipping(true);
@@ -47,7 +50,7 @@ export const GallerySection = ({ images }: GallerySectionProps) => {
         setCurrentIndex((prev) => (prev + 1) % images.length);
         setIsFlipping(false);
       }, 300);
-    }, 5000);
+    }, flipInterval);
 
     return () => clearInterval(timer);
   }, [autoPlay, images.length]);
